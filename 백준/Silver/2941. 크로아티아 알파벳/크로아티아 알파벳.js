@@ -6,15 +6,12 @@ const inputData = fs
   .trim()
   .split("\n");
 
-function countCroatianAlphabets(input) {
-  // 크로아티아 알파벳 목록
-  const croatianAlphabets = ["c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="];
+let word = inputData[0];
 
-  for (const croatianAlphabet of croatianAlphabets) {
-    input = input.split(croatianAlphabet).join(" "); 
-  }
+const croatianAlphabets = ["c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="];
 
-  return input.length;
+for (let croatianAlphabet of croatianAlphabets) {
+  word = word.split(croatianAlphabet).join(" ");
 }
 
-console.log(countCroatianAlphabets(inputData[0]));
+console.log(word.length);
