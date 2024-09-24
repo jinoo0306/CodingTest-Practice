@@ -6,30 +6,28 @@ const inputData = fs
   .trim()
   .split("\n");
 
-const numWords = parseInt(inputData[0]);
+const n = parseInt(inputData[0]);
+
+const wordArr = inputData.slice(1);
+
 let count = 0;
 
 function isGroupWord(word) {
   const seen = new Set();
-  let previousChar = "";
+  let lastChar = "";
 
   for (const char of word) {
-    if (char !== previousChar) {
-      if (seen.has(char)) {
-        return false; // 이전에 나온 문자가 다시 나왔다면 그룹 단어가 아님
-      }
-      seen.add(char); // 새로운 문자를 기록
-    }
-    previousChar = char;
+    if (seen.has(char) && lastChar !== char) return false;
+    lastChar = char;
+    seen.add(char);
   }
 
-  return true; // 그룹 단어임
+  return true;
 }
 
-for (let i = 1; i <= numWords; i++) {
-  if (isGroupWord(inputData[i])) {
-    count++;
+if (n === wordArr.length)
+  for (const word of wordArr) {
+    if (isGroupWord(word)) count++;
   }
-}
 
 console.log(count);
